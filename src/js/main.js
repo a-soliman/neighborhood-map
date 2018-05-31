@@ -41,11 +41,29 @@ function AppViewModel() {
         
             if ( location.name == name ) {
                 location.highlighted(true);
+
+                let marker = markers.filter((item) => item.name == name)[0];
+                    if ( marker ) {
+                        self.animateBouncing(marker)
+                    }
+
             } else {
                 location.highlighted(false);
             }
-        }
+        };
     };
+
+    /*  SET BOUNSING ANIMATION ON MARKER */
+    self.animateBouncing = function (givenMarker) {
+        markers.forEach(( marker ) => {
+            if ( marker == givenMarker ) {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+            else {
+                marker.setAnimation(null);
+            }
+        })
+    }
 
 
 }
@@ -65,25 +83,26 @@ function initMap() {
     map = new google.maps.Map(mapContainer, mapOptions);
 
     /* LOOP TO CREATE MARKER PER EACH LOCATION */
-    viewModel.locations().forEach(( location ) => {
+    viewModel.locations().forEach(( location, i ) => {
         let marker = new google.maps.Marker({
             position: location.position,
             map: map,
-            name: location.name
+            name: location.name,
+            id: i
+
         });
 
         let infoWindow = new google.maps.InfoWindow({
             content: marker.name
         });
 
+        markers.push(marker);
+
         marker.addListener('click', function() {
             infoWindow.open(map, marker);
             viewModel.signalHighlited(marker.name);
         });
     });
-
-    
-
 }
 
 
