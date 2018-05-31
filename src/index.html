@@ -16,11 +16,20 @@
 			<h4>Locations</h4>
 			<form action="" class="form">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search Places">
+					<input 
+						type="text" 
+						class="form-control" 
+						placeholder="Search Places"
+						data-bind="value: filterString, valueUpdate: 'afterkeydown', event: {keyup: search}"
+						>
 				</div>
 			</form>
 			
-			<ul data-bind="foreach: locations">
+			<ul data-bind="foreach: locations, visible: !filteredLocations().length">
+				<li data-bind="text: name, style: {color: $data.highlighted() ? 'red' : 'black'}, click: $parent.signalHighlited(name)", ></li>
+			</ul>
+
+			<ul data-bind="foreach: filteredLocations, visible: filteredLocations().length">
 				<li data-bind="text: name, style: {color: $data.highlighted() ? 'red' : 'black'}, click: $parent.signalHighlited(name)", ></li>
 			</ul>
 		</div>
