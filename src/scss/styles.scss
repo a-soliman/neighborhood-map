@@ -1,8 +1,11 @@
 @import "./reset/basic-reset";
 @import "./partials/vars";
 
-
-
 body {
 	background: $white;
+}
+
+#map {
+	height: 700px;
+	width: 100%;
 }

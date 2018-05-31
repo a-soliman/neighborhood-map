@@ -79,7 +79,7 @@ gulp.task('copy-js', () => {
 
 gulp.task('scripts', () => {
 	console.log('Starting SCRIPTS task')
-	return gulp.src(_scripts_path)
+	return gulp.src('src/js/**/*.js')
 		.pipe(plumber( function(err) {
 			console.log('SCRIPTS task error');
 			console.log(err);
