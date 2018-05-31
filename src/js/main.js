@@ -27,3 +27,16 @@ const locations = [
 ];
 
 
+/* INITIALIZING THE MAP */
+function initMap() {
+    // GET THE MAP CONTAINER AND SET THE OPTIONS
+    const mapContainer = document.getElementById('map');
+    const mapOptions = {
+        center: { lat: 37.848700, lng: -122.480169 },
+        zoom: 14
+    };
+    //INITIALIZE THE MAP
+    map = new google.maps.Map(mapContainer, mapOptions);
+
+    
+}
