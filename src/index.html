@@ -14,6 +14,12 @@
 	<div class="app-container">
 		<div class="list-container">
 			<h4>Locations</h4>
+			<form action="" class="form">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search Places">
+				</div>
+			</form>
+			
 			<ul data-bind="foreach: locations">
 				<li data-bind="text: name, style: {color: $data.highlighted() ? 'red' : 'black'}, click: $parent.signalHighlited(name)", ></li>
 			</ul>

@@ -30,7 +30,7 @@ function AppViewModel() {
         {
             name: 'Sausalito Ferry Terminal',
             position: {lat: 37.856567, lng: -122.478235},
-            highlighted: ko.observable(true)
+            highlighted: ko.observable(false)
         }
     ]);
 
