@@ -38,5 +38,12 @@ function initMap() {
     //INITIALIZE THE MAP
     map = new google.maps.Map(mapContainer, mapOptions);
 
-    
+    /* LOOP TO CREATE MARKER PER EACH LOCATION */
+    locations.forEach(( location ) => {
+        let marker = new google.maps.Marker({
+            position: location.position,
+            map: map
+        });
+        console.log(marker)
+    });
 }
