@@ -32,7 +32,7 @@ function initMap() {
     // GET THE MAP CONTAINER AND SET THE OPTIONS
     const mapContainer = document.getElementById('map');
     const mapOptions = {
-        center: { lat: 37.848700, lng: -122.480169 },
+        center: {lat: 37.855221, lng: -122.478831},
         zoom: 14
     };
     //INITIALIZE THE MAP
