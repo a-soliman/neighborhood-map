@@ -35,7 +35,7 @@ function AppViewModel() {
     ]);
 
     self.filteredLocations = ko.observableArray();
-    self.filterString = ko.observable();
+    self.filterString = ko.observable('');
 
     /* SINGAL HIGHLIGHT STATE TO THE VIEWMODEL */
     self.signalHighlited = function (data) {
@@ -71,10 +71,16 @@ function AppViewModel() {
 
     self.search = function() {
         let value = self.filterString();
-        let result = self.locations().filter((location) => {
-            return location.name.toLowerCase().includes(value);
-        });
-        self.filteredLocations(result);
+
+        if ( value.length > 0 ) {
+            let result = self.locations().filter((location) => {
+                return location.name.toLowerCase().includes(value);
+            });
+            self.filteredLocations(result);
+        }
+        else {
+            self.filteredLocations([]);
+        }
         self.filterMarkers(value);
     }
 

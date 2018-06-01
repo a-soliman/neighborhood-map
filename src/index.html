@@ -25,11 +25,11 @@
 				</div>
 			</form>
 			
-			<ul data-bind="foreach: locations, visible: !filteredLocations().length">
+			<ul data-bind="foreach: locations, visible: filterString().length < 1">
 				<li data-bind="text: name, style: {color: $data.highlighted() ? 'red' : 'black'}, click: $parent.signalHighlited", ></li>
 			</ul>
 
-			<ul data-bind="foreach: filteredLocations, visible: filteredLocations().length">
+			<ul data-bind="foreach: filteredLocations, visible: filteredLocations().length > 0">
 				<li data-bind="text: name, style: {color: $data.highlighted() ? 'red' : 'black'}, click: $parent.signalHighlited", ></li>
 			</ul>
 		</div>
