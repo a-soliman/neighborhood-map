@@ -75,6 +75,23 @@ function AppViewModel() {
             return location.name.toLowerCase().includes(value);
         });
         self.filteredLocations(result);
+        self.filterMarkers(value);
+    }
+
+    self.filterMarkers = function( value ) {
+        let markersToHide = markers.filter(( marker ) => {
+            return marker.name.toLowerCase().indexOf(value) == -1;
+        });
+        let markersToDisplay = markers.filter(( marker ) => {
+            return marker.name.toLowerCase().indexOf(value) != -1;
+        });
+        
+        markersToHide.forEach(( marker ) => {
+            marker.setMap(null);
+        });
+        markersToDisplay.forEach(( marker ) => {
+            marker.setMap(map);
+        })
     }
 
 
