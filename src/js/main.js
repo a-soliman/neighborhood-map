@@ -38,7 +38,8 @@ function AppViewModel() {
     self.filterString = ko.observable();
 
     /* SINGAL HIGHLIGHT STATE TO THE VIEWMODEL */
-    self.signalHighlited = function (name) {
+    self.signalHighlited = function (data) {
+        let name = data.name;
         for ( let i = 0; i < self.locations().length; i++ ) {
             let location = self.locations()[i];
         
@@ -111,9 +112,10 @@ function initMap() {
 
         marker.addListener('click', function() {
             infoWindow.open(map, marker);
-            viewModel.signalHighlited(marker.name);
+            viewModel.signalHighlited(marker);
         });
     });
+
 }
 
 
