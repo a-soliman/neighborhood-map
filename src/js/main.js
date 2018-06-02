@@ -6,26 +6,41 @@ const backupLocations = [
     {
         name: 'The Trident',
         position: {lat: 37.853405, lng: -122.478708},
+        image: 'https://s3-media3.fl.yelpcdn.com/bphoto/SavnswRo8GIvK1nKc-boyA/o.jpg',
+        rating: 3.5,
+        address: '558 Bridgeway',
         highlighted: ko.observable(false)
     },
     {
-        name: 'Angelino',
+        name: 'Napa Valley Burger Company',
         position: {lat: 37.854616, lng: -122.479051},
+        image: 'https://s3-media2.fl.yelpcdn.com/bphoto/c4qNa-lDiZkMWRCirX1lgA/o.jpg',
+        rating: 4,
+        address: '670 Bridgeway',
         highlighted: ko.observable(false)
     },
     {
         name: 'Barrel House Tavern',
         position: {lat: 37.855221, lng: -122.478831},
+        image: 'https://s3-media3.fl.yelpcdn.com/bphoto/ndYSXvbqcxIthPof8nNbow/o.jpg',
+        rating: 3.5,
+        address: '660 Bridgeway',
         highlighted: ko.observable(false)
     },
     {
-        name: 'Copita',
+        name: 'Lighthouse Cafe',
         position: {lat: 37.856413, lng: -122.480081},
+        image: 'https://s3-media4.fl.yelpcdn.com/bphoto/rx9px8mrxgCFKU0img12MA/o.jpg',
+        rating: 4,
+        address: '1311 Bridgeway',
         highlighted: ko.observable(false)
     },
     {
-        name: 'Sausalito Ferry Terminal',
+        name: 'Seafood Peddler',
         position: {lat: 37.856567, lng: -122.478235},
+        image: 'https://s3-media1.fl.yelpcdn.com/bphoto/p6xdlY3vpG-G7WeGAFYOyA/o.jpg',
+        rating: 3.5,
+        address: '303 Johnson St',
         highlighted: ko.observable(false)
     }
 ];
