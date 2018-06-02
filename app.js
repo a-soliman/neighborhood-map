@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
         
         // FILTER THE RESTUARANT TO SAUSALITO, CA
         let sausalitoRestaurants = businesses.filter((business) => {
-            return business.location.city = 'sausalito' && business.location.zip_code == '94965';
+            return business.location.city = 'sausalito';
         });
         let result = [];
 
