@@ -1,39 +1,41 @@
 /* GLOBAL VARIABLES */
 let map;
 const markers = [];
+const backupLocations = [
+    {
+        name: 'The Trident',
+        position: {lat: 37.853405, lng: -122.478708},
+        highlighted: ko.observable(false)
+    },
+    {
+        name: 'Angelino',
+        position: {lat: 37.854616, lng: -122.479051},
+        highlighted: ko.observable(false)
+    },
+    {
+        name: 'Barrel House Tavern',
+        position: {lat: 37.855221, lng: -122.478831},
+        highlighted: ko.observable(false)
+    },
+    {
+        name: 'Copita',
+        position: {lat: 37.856413, lng: -122.480081},
+        highlighted: ko.observable(false)
+    },
+    {
+        name: 'Sausalito Ferry Terminal',
+        position: {lat: 37.856567, lng: -122.478235},
+        highlighted: ko.observable(false)
+    }
+];
+
 
 /* KO */
 function AppViewModel() {
     const self = this;
 
     self.spinner = ko.observable(false);
-    self.locations = ko.observableArray([
-        {
-            name: 'The Trident',
-            position: {lat: 37.853405, lng: -122.478708},
-            highlighted: ko.observable(false)
-        },
-        {
-            name: 'Angelino',
-            position: {lat: 37.854616, lng: -122.479051},
-            highlighted: ko.observable(false)
-        },
-        {
-            name: 'Barrel House Tavern',
-            position: {lat: 37.855221, lng: -122.478831},
-            highlighted: ko.observable(false)
-        },
-        {
-            name: 'Copita',
-            position: {lat: 37.856413, lng: -122.480081},
-            highlighted: ko.observable(false)
-        },
-        {
-            name: 'Sausalito Ferry Terminal',
-            position: {lat: 37.856567, lng: -122.478235},
-            highlighted: ko.observable(false)
-        }
-    ]);
+    self.locations = ko.observableArray();
 
     self.filteredLocations = ko.observableArray();
     self.filterString = ko.observable('');
@@ -142,7 +144,35 @@ function initMap() {
 
 }
 
+function getLocationsFromYelp() {
+    fetch('http://localhost:3333')
+        .then( function(response) {
+            if (response.status !== 200 ) {
+                response.json().then( ( data ) => {
+                    console.log('check the backend');
+                    viewModel.locations(backupLocations);
+                    initMap()
 
+                })
+                return
+            }
+            response.json().then(function(data) {
+                data.forEach(( item ) => {
+                    item.highlighted = ko.observable(false);
+                })
+                viewModel.locations(data)
+                initMap()
+            })
+        })
+        .catch( function( err ) {
+            console.log('Fetch Error :-S', err);
+            viewModel.locations(backupLocations);
+            initMap()
+        })
+}
+
+let some = getLocationsFromYelp()
+console.log(some)
 
 
 ko.applyBindings(viewModel)
