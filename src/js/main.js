@@ -126,12 +126,22 @@ function initMap() {
             position: location.position,
             map: map,
             name: location.name,
+            image: location.image,
+            rating: location.rating,
+            address: location.address,
             id: i
 
         });
 
         let infoWindow = new google.maps.InfoWindow({
-            content: marker.name
+            content: `
+                <div class="infoWindow">
+                    <h3 class="name">${marker.name}</h3>
+                    <h4 class="rating">Yelp Rating: ${marker.rating}</h4>
+                    <p>${marker.address}</p>
+                    <img src="${marker.image}">
+                </div>
+                `
         });
 
         markers.push(marker);
