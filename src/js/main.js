@@ -131,6 +131,21 @@ function AppViewModel() {
         markersToDisplay.forEach(( marker ) => {
             marker.setMap(map);
         })
+    };
+
+    self.toggleNav = function() {
+        let navContainer = $('.list-container');
+        let toggleIcon = $('.toggle-icon');
+
+        navContainer.toggle()
+        if ( navContainer.is(":visible")) {
+            toggleIcon.removeClass('fa-arrow-right').addClass('fa-arrow-left')
+        }
+        else {
+            toggleIcon.removeClass('fa-arrow-left').addClass('fa-arrow-right')
+        }
+        
+
     }
 
 
@@ -144,7 +159,8 @@ function initMap() {
     const mapContainer = document.getElementById('map');
     const mapOptions = {
         center: {lat: 37.855221, lng: -122.478831},
-        zoom: 14
+        zoom: 14,
+        mapTypeId: 'roadmap'
     };
 
     //INITIALIZE THE MAP

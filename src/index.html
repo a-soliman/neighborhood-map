@@ -11,14 +11,14 @@
 </head>
 <body>
 	<!-- Body STARTS HERE -->
-	<div class="app-container">
-		<div class="list-container">
+	<div class="app-container d-flex">
+		<div class="list-container ">
 			<h4>Locations</h4>
 			<form action="" class="form">
 				<div class="form-group">
 					<input 
 						type="text" 
-						class="form-control" 
+						class="form-control form-control-lg" 
 						placeholder="Search Places"
 						data-bind="value: filterString, valueUpdate: 'afterkeydown', event: {keyup: search}"
 						>
@@ -26,14 +26,23 @@
 			</form>
 			
 			<ul data-bind="foreach: locations, visible: filterString().length < 1">
-				<li data-bind="text: name, style: {color: $data.highlighted() ? 'red' : 'black'}, click: $parent.signalHighlited", ></li>
+				<li data-bind="text: name, style: {color: $data.highlighted() ? 'white' : '#cccccc', background: $data.highlighted() ? '#172430' : ''}, click: $parent.signalHighlited", ></li>
 			</ul>
 
 			<ul data-bind="foreach: filteredLocations, visible: filteredLocations().length > 0">
-				<li data-bind="text: name, style: {color: $data.highlighted() ? 'red' : 'black'}, click: $parent.signalHighlited", ></li>
+				<li data-bind="text: name, style: {color: $data.highlighted() ? 'white' : '#cccccc'}, click: $parent.signalHighlited", ></li>
 			</ul>
 		</div>
+		
 		<div class="map-container">
+				<div class="toggle">
+						<button 
+						class="btn nav-closer"
+						data-bind="click: toggleNav"
+						>
+						<i class=" toggle-icon fa fa-arrow-left"></i>
+					</button>
+				</div>
 			<div id="map"></div>
 		</div>
 		

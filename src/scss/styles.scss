@@ -5,26 +5,57 @@ body {
 	background: $white;
 }
 .list-container, .map-container {
-	display: inline-block;
 	vertical-align: top;
 	padding: 0;
 	margin: 0;
 	height:100vh;
 }
 .list-container {
-	width: 30%;
-	padding: 20px 10px;
+	padding: 20px 0;
+	position: relative;
+	z-index: 100;
+	overflow: scroll;
+	background: #273c51;
+    color: white;
 	
+	.nav-closer {
+		position: relative;
+		left: 51px;
+	}
 	h4 {
 		text-align: center;
+	}
+
+	.form {
+		padding: 0 25px;
+	}
+
+	ul {}
+	li {
+		padding: 10px 25px;
 	}
 	
 }
 
 .map-container {
-	width: 69%;
+	width: 100%;
 }
 
+.toggle {
+	display: inline;
+	position: absolute;
+	z-index:1000;
+	top: 50px;
+
+	.btn {
+		background-color: #273c51;
+		color: white;
+		
+		&:focus {
+			box-shadow: none;
+		}
+	}
+}
 #map {
 	height: 100%;
 	width: 100%;
