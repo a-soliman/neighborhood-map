@@ -1,5 +1,6 @@
 /* GLOBAL VARIABLES */
 let map;
+let infoWindow;
 const markers = [];
 const backupLocations = [
     {
@@ -144,12 +145,14 @@ function initMap() {
                 `
         });
 
-        markers.push(marker);
-
         marker.addListener('click', function() {
             infoWindow.open(map, marker);
             viewModel.signalHighlited(marker);
         });
+
+        markers.push(marker);
+
+        
     });
 
 }
@@ -181,8 +184,7 @@ function getLocationsFromYelp() {
         })
 }
 
-let some = getLocationsFromYelp()
-console.log(some)
+getLocationsFromYelp()
 
 
 ko.applyBindings(viewModel)
