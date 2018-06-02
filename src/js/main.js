@@ -52,7 +52,8 @@ function AppViewModel() {
 
                 let marker = markers.filter((item) => item.name == name)[0];
                     if ( marker ) {
-                        self.animateBouncing(marker)
+                        self.animateBouncing(marker);
+                        self.displayInfoWindow(marker);
                     }
 
             } else {
@@ -72,6 +73,19 @@ function AppViewModel() {
             }
         })
     };
+
+    /* DISPLAYS AN INFOWINDOW IF A RESTAURANT IS HIGHLIGHTED */
+    self.displayInfoWindow = function(marker) {
+        infoWindow.setContent( `
+            <div class="infoWindow">
+                <h3 class="name">${marker.name}</h3>
+                <h4 class="rating">Yelp Rating: ${marker.rating}</h4>
+                <p>${marker.address}</p>
+                <img src="${marker.image}">
+            </div>
+            `)
+            infoWindow.open(map, marker);
+    }
 
     self.search = function() {
         let value = self.filterString();
@@ -134,18 +148,17 @@ function initMap() {
 
         });
 
-        let infoWindow = new google.maps.InfoWindow({
-            content: `
-                <div class="infoWindow">
-                    <h3 class="name">${marker.name}</h3>
-                    <h4 class="rating">Yelp Rating: ${marker.rating}</h4>
-                    <p>${marker.address}</p>
-                    <img src="${marker.image}">
-                </div>
-                `
-        });
+        infoWindow = new google.maps.InfoWindow();
 
         marker.addListener('click', function() {
+            infoWindow.setContent( `
+            <div class="infoWindow">
+                <h3 class="name">${marker.name}</h3>
+                <h4 class="rating">Yelp Rating: ${marker.rating}</h4>
+                <p>${marker.address}</p>
+                <img src="${marker.image}">
+            </div>
+            `)
             infoWindow.open(map, marker);
             viewModel.signalHighlited(marker);
         });
