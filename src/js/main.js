@@ -6,6 +6,7 @@ const markers = [];
 function AppViewModel() {
     const self = this;
 
+    self.spinner = ko.observable(false);
     self.locations = ko.observableArray([
         {
             name: 'The Trident',
@@ -140,6 +141,7 @@ function initMap() {
     });
 
 }
+
 
 
 
