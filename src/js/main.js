@@ -231,6 +231,10 @@ function getLocationsFromYelp() {
         });
 }
 
+function raiseGAPIError() {
+    alert('Error loading GMaps API script.');
+}
+
 getLocationsFromYelp();
 
 
