@@ -76,7 +76,7 @@ function AppViewModel() {
             } else {
                 location.highlighted(false);
             }
-        };
+        }
     };
 
     /*  SET BOUNSING ANIMATION ON MARKER */
@@ -88,7 +88,7 @@ function AppViewModel() {
             else {
                 marker.setAnimation(null);
             }
-        })
+        });
     };
 
     /* DISPLAYS AN INFOWINDOW IF A RESTAURANT IS HIGHLIGHTED */
@@ -102,7 +102,7 @@ function AppViewModel() {
             </div>
             `);
             infoWindow.open(map, marker);
-    }
+    };
 
     self.search = function() {
         let value = self.filterString();
@@ -117,7 +117,7 @@ function AppViewModel() {
             self.filteredLocations([]);
         }
         self.filterMarkers(value);
-    }
+    };
 
     self.filterMarkers = function( value ) {
         let markersToHide = markers.filter(( marker ) => {
@@ -139,21 +139,21 @@ function AppViewModel() {
         let navContainer = $('.list-container');
         let toggleIcon = $('.toggle-icon');
 
-        navContainer.toggle()
+        navContainer.toggle();
         if ( navContainer.is(":visible")) {
-            toggleIcon.removeClass('fa-arrow-right').addClass('fa-arrow-left')
+            toggleIcon.removeClass('fa-arrow-right').addClass('fa-arrow-left');
         }
         else {
-            toggleIcon.removeClass('fa-arrow-left').addClass('fa-arrow-right')
+            toggleIcon.removeClass('fa-arrow-left').addClass('fa-arrow-right');
         }
         
 
-    }
+    };
 
 
 }
 
-let viewModel = new AppViewModel()
+let viewModel = new AppViewModel();
 
 /* INITIALIZING THE MAP */
 function initMap() {
@@ -210,17 +210,17 @@ function getLocationsFromYelp() {
                     viewModel.locations(backupLocations);
                     initMap();
 
-                })
-                return
+                });
+                return;
             }
             response.json().then(function(data) {
                 data.forEach(( item ) => {
                     item.highlighted = ko.observable(false);
-                })
+                });
                 viewModel.locations(data);
                 viewModel.dataLoadError(false);
                 initMap();
-            })
+            });
         })
         .catch( function( err ) {
             console.log('Fetch Error :-S', err);
@@ -228,7 +228,7 @@ function getLocationsFromYelp() {
             viewModel.dataLoadError(true);
             alert('Error has occurred while loading data, results will be limited..');
             initMap();
-        })
+        });
 }
 
 getLocationsFromYelp();
