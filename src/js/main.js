@@ -56,6 +56,8 @@ function AppViewModel() {
     self.filteredLocations = ko.observableArray();
     self.filterString = ko.observable('');
 
+    self.dataLoadError = ko.observable(false);
+
     /* SINGAL HIGHLIGHT STATE TO THE VIEWMODEL */
     self.signalHighlited = function (data) {
         let name = data.name;
@@ -98,7 +100,7 @@ function AppViewModel() {
                 <p>${marker.address}</p>
                 <img src="${marker.image}">
             </div>
-            `)
+            `);
             infoWindow.open(map, marker);
     }
 
@@ -130,7 +132,7 @@ function AppViewModel() {
         });
         markersToDisplay.forEach(( marker ) => {
             marker.setMap(map);
-        })
+        });
     };
 
     self.toggleNav = function() {
@@ -189,14 +191,12 @@ function initMap() {
                 <p>${marker.address}</p>
                 <img src="${marker.image}">
             </div>
-            `)
+            `);
             infoWindow.open(map, marker);
             viewModel.signalHighlited(marker);
         });
 
         markers.push(marker);
-
-        
     });
 
 }
@@ -208,7 +208,7 @@ function getLocationsFromYelp() {
                 response.json().then( ( data ) => {
                     console.log('check the backend');
                     viewModel.locations(backupLocations);
-                    initMap()
+                    initMap();
 
                 })
                 return
@@ -217,18 +217,21 @@ function getLocationsFromYelp() {
                 data.forEach(( item ) => {
                     item.highlighted = ko.observable(false);
                 })
-                viewModel.locations(data)
-                initMap()
+                viewModel.locations(data);
+                viewModel.dataLoadError(false);
+                initMap();
             })
         })
         .catch( function( err ) {
             console.log('Fetch Error :-S', err);
             viewModel.locations(backupLocations);
-            initMap()
+            viewModel.dataLoadError(true);
+            alert('Error has occurred while loading data, results will be limited..');
+            initMap();
         })
 }
 
-getLocationsFromYelp()
+getLocationsFromYelp();
 
 
-ko.applyBindings(viewModel)
+ko.applyBindings(viewModel);
